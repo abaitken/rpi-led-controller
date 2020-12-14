@@ -1,0 +1,47 @@
+﻿using Lighting.Patterns;
+using System;
+
+namespace Lighting.Animations
+{
+    public class AnimationFlashing : Animation
+    {
+        private int _remainingIterations;
+        private bool _on;
+
+        public override int Begin(ILightingController controller, IPattern pattern, Random random)
+        {
+            _remainingIterations = random.Next(4, 8);
+
+            for (int index = 0; index < controller.LightCount; index++)
+                controller[index].Color = pattern[index];
+
+            controller.Update();
+
+            _on = true;
+            return _remainingIterations;
+        }
+
+        public override AnimationState Step(ILightingController controller, IPattern pattern, Random random)
+        {
+            if (_on)
+            {
+                controller.Brightness = 0;
+                _on = false;
+            }
+            else
+            {
+                controller.Brightness = (controller.Brightness);
+                _on = true;
+                _remainingIterations--;
+            }
+
+            controller.Update();
+
+            if (_remainingIterations > 0)
+                return AnimationState.InProgress;
+
+            controller.Brightness = (controller.Brightness);
+            return AnimationState.Complete;
+        }
+    }
+}
