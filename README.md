@@ -45,18 +45,15 @@ A combination of multiple scenes.
 	- e.g. 'A=FR;P=R;T=C,25;A=FL' (Animation fill right, Palette is random, Timing is constant 25ms, then animate Fill left, then repeat)
 	- Subsequent palettes/timings just change the current settings until overridden
 	- Provide brightness override
-- Implement executable/main library with LED WS2812/ILightingController implementation
+- Complete executable/main library with LED WS2812/ILightingController implementation
 - Implement LAN communication
 	- Implement a technique to send instructions
 		- Post a string to a simple web server with various patterns/palettes etc?
 		- Create RPI app to provide controls for sending string
 - Add circuit diagram
-- Implement Unit Tests
 
 ## Bugs
 
-- Sometimes there is a long pause on a single pattern
-- Sometimes there an odd color left over on the first/last LED
+- Sometimes there is a long pause on a single pattern (FIXED? Needs Testing)
+- Sometimes there an odd color left over on the first/last LED (FIXED? Needs Testing)
 - Fade out animation does not seem to be working
-- Some of the new animations are not working or causing the arduino to crash and reboot
-- Network connection is getting stuck

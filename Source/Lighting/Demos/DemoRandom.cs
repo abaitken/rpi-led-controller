@@ -20,18 +20,21 @@ namespace Lighting.Demos
         {
             var nextPattern = _patternFactory.GenerateRandom();
 
-            int i = 0;
-            while (i < 10 && _currentPattern.GetType() == typeof(PatternClear) && nextPattern.GetType() == typeof(PatternClear))
+            if (_currentPattern != null)
             {
-                nextPattern = _patternFactory.GenerateRandom();
-                i++;
-            }
+                int i = 0;
+                while (i < 10 && _currentPattern.GetType() == typeof(PatternClear) && nextPattern.GetType() == typeof(PatternClear))
+                {
+                    nextPattern = _patternFactory.GenerateRandom();
+                    i++;
+                }
 
-            // TODO : Remove this?
-            // NOTE : Temporary implementation to prevent unlit/black colour being used in succession
-            if (i >= 9)
-            {
-                nextPattern = new PatternRandomSolidColor();
+                // TODO : Remove this?
+                // NOTE : Temporary implementation to prevent unlit/black colour being used in succession
+                if (i >= 9)
+                {
+                    nextPattern = new PatternRandomSolidColor();
+                }
             }
 
             _currentPattern = nextPattern;
