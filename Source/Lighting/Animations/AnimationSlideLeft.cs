@@ -5,23 +5,22 @@ namespace Lighting.Animations
 {
     public class AnimationSlideLeft : Animation
     {
-        private int _index;
+        private int _offset;
 
         public override int Begin(ILightingController controller, IPattern pattern, Random random)
         {
-            _index = controller.LightCount - 1;
+            _offset = controller.LightCount - 1;
             return controller.LightCount;
         }
 
         public override AnimationState Step(ILightingController controller, IPattern pattern, Random random)
         {
-            _index--;
-
-            for (int index = _index; index < controller.LightCount; index++)
-                controller[index].Color = pattern[index];
+            for (int index = _offset; index < controller.LightCount; index++)
+                controller[index].Color = pattern[index - _offset];
 
             controller.Update();
-            if (_index > 0)
+            _offset--;
+            if (_offset >= 0)
                 return AnimationState.InProgress;
 
             return AnimationState.Complete;

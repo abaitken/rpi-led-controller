@@ -10,7 +10,7 @@ namespace Lighting.Animations
 
         public override int Begin(ILightingController controller, IPattern pattern, Random random)
         {
-            _left = (int)Math.Floor((double)controller.LightCount / 2);
+            _left = (int)Math.Floor((double)(controller.LightCount - 1) / 2);
             _right = (int)Math.Ceiling((double)controller.LightCount / 2);
             return controller.LightCount;
         }

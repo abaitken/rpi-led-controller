@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Lighting
 {
-    public struct Color
+    public struct Color : IEquatable<Color>
     {
         public byte R { get; set; }
         public byte G { get; set; }
@@ -44,6 +45,41 @@ namespace Lighting
         }
 
         public static implicit operator Color(int rgb) => new Color(rgb);
+
+        public override int GetHashCode()
+        {
+            return R.GetHashCode() ^ G.GetHashCode() ^ B.GetHashCode();
+        }
+
+        public static bool Equals(Color left, Color right)
+        {
+            return left.R == right.R &&
+                left.G == right.G &&
+                left.B == right.B;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Color))
+                return false;
+
+            return Equals(this, (Color)obj);
+        }
+
+        public bool Equals(Color other)
+        {
+            return Equals(this, other);
+        }
+
+        public static bool operator ==(Color left, Color right)
+        {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(Color left, Color right)
+        {
+            return !Equals(left, right);
+        }
 
         public static Color AliceBlue => 0xF0F8FF;
         public static Color Amethyst => 0x9966CC;

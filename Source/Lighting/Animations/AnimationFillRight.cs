@@ -20,7 +20,7 @@ namespace Lighting.Animations
             controller.Update();
             _index--;
 
-            if (_index > 0)
+            if (_index >= 0)
                 return AnimationState.InProgress;
             return AnimationState.Complete;
         }

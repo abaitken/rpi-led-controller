@@ -9,7 +9,7 @@ namespace Lighting.Animations
 
         public override int Begin(ILightingController controller, IPattern pattern, Random random)
         {
-            _offset = controller.LightCount;
+            _offset = 0;
             return controller.LightCount;
         }
 
@@ -17,15 +17,15 @@ namespace Lighting.Animations
         {
             for (int index = 0; index < controller.LightCount; index++)
             {
-                int offsetIndex = index + _offset;
+                int offsetIndex = index - _offset;
                 if (offsetIndex < 0)
                     offsetIndex = controller.LightCount + offsetIndex;
-                controller[index].Color = pattern[offsetIndex];
+                controller[offsetIndex].Color = pattern[index];
             }
 
             controller.Update();
-            _offset--;
-            if (_offset >= 0)
+            _offset++;
+            if (_offset < controller.LightCount)
                 return AnimationState.InProgress;
 
             return AnimationState.Complete;

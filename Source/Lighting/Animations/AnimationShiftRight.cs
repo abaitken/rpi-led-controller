@@ -17,9 +17,9 @@ namespace Lighting.Animations
         {
             for (int index = 0; index < controller.LightCount; index++)
             {
-                int offsetIndex = index + _offset;
-                if (offsetIndex >= controller.LightCount)
-                    offsetIndex = controller.LightCount - offsetIndex;
+                int offsetIndex = index - _offset;
+                if (offsetIndex < 0)
+                    offsetIndex = controller.LightCount + offsetIndex;
                 controller[index].Color = pattern[offsetIndex];
             }
 

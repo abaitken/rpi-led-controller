@@ -30,7 +30,7 @@ namespace Lighting.Animations
             }
             else
             {
-                controller.Brightness = (controller.Brightness);
+                controller.Brightness = (controller.DefaultBrightness);
                 _on = true;
                 _remainingIterations--;
             }
@@ -40,7 +40,7 @@ namespace Lighting.Animations
             if (_remainingIterations > 0)
                 return AnimationState.InProgress;
 
-            controller.Brightness = (controller.Brightness);
+            controller.Brightness = (controller.DefaultBrightness);
             return AnimationState.Complete;
         }
     }
