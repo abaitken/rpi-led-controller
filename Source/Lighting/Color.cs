@@ -81,6 +81,13 @@ namespace Lighting
             return !Equals(left, right);
         }
 
+        public double Distance(Color other)
+        {
+            var left = (R * .30) + (G * .59) + (B * .11);
+            var right = (other.R * .30) + (other.G * .59) + (other.B * .11);
+            return ((right - left) * 100) / 255;
+        }
+
         public static Color AliceBlue => 0xF0F8FF;
         public static Color Amethyst => 0x9966CC;
         public static Color AntiqueWhite => 0xFAEBD7;

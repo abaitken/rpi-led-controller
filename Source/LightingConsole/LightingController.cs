@@ -6,8 +6,8 @@ namespace LightingConsole
 {
     internal class LightingController : ILightingController
     {
-        private Controller _controller;
-        private WS281x _rpi;
+        private readonly Controller _controller;
+        private readonly WS281x _rpi;
 
         public LightingController()
         {
