@@ -25,6 +25,13 @@ namespace Lighting.Tests
             {
                 Assert.AreEqual(Color.Blue, subject[i]);
             }
+            
+            subject.NextState(random);
+
+            for (int i = 0; i < 10; i++)
+            {
+                Assert.AreEqual(Color.Blue, subject[i]);
+            }
         }
 
         [TestMethod]
@@ -39,6 +46,13 @@ namespace Lighting.Tests
 
             var random = new Random(0);
             subject.Reset(info, random);
+
+            for (int i = 0; i < 10; i++)
+            {
+                Assert.AreEqual(Color.Black, subject[i]);
+            }
+
+            subject.NextState(random);
 
             for (int i = 0; i < 10; i++)
             {
@@ -70,6 +84,19 @@ namespace Lighting.Tests
             Assert.AreEqual(new Color(0, 171, 84), subject[7]);
             Assert.AreEqual(new Color(240, 0, 15), subject[8]);
             Assert.AreEqual(new Color(45, 210, 0), subject[9]);
+
+            subject.NextState(random);
+
+            Assert.AreEqual(new Color(45, 0, 210), subject[0]);
+            Assert.AreEqual(new Color(117, 0, 138), subject[1]);
+            Assert.AreEqual(new Color(78, 0, 177), subject[2]);
+            Assert.AreEqual(new Color(0, 84, 171), subject[3]);
+            Assert.AreEqual(new Color(99, 156, 0), subject[4]);
+            Assert.AreEqual(new Color(0, 81, 174), subject[5]);
+            Assert.AreEqual(new Color(183, 0, 72), subject[6]);
+            Assert.AreEqual(new Color(0, 171, 84), subject[7]);
+            Assert.AreEqual(new Color(240, 0, 15), subject[8]);
+            Assert.AreEqual(new Color(45, 210, 0), subject[9]);
         }
 
         [TestMethod]
@@ -84,6 +111,13 @@ namespace Lighting.Tests
 
             var random = new Random(0);
             subject.Reset(info, random);
+
+            for (int i = 0; i < 10; i++)
+            {
+                Assert.AreEqual(new Color(45, 0, 210), subject[i]);
+            }
+
+            subject.NextState(random);
 
             for (int i = 0; i < 10; i++)
             {
