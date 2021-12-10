@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace LightingConsole
 {
-    internal class LightingController : ILightingController
+    public class LightingController : ILightingController
     {
         private readonly Controller _controller;
         private readonly WS281x _rpi;

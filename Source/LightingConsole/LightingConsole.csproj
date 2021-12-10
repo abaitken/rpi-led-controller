@@ -3,15 +3,11 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFrameworks>net5</TargetFrameworks>
+    <Platforms>AnyCPU;ARM64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Lighting\Lighting.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="digitalhigh.rpi-ws281x-csharp" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.0" />
   </ItemGroup>
 
 </Project>
