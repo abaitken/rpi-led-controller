@@ -3,6 +3,9 @@ using System;
 
 namespace Lighting.Animations
 {
+    /// <summary>
+    /// Instantly applies the pattern to the lighting strip
+    /// </summary>
     public class AnimationInstant : Animation
     {
         public override int Begin(ILightingController controller, IPattern pattern, Random random)

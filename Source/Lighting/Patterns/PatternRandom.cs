@@ -14,9 +14,9 @@ namespace Lighting.Patterns
         {
         }
 
-        public override void Reset(ILightingController controller, Random random)
+        public override void Reset(ILightingInformation information, Random random)
         {
-            _colors = (from index in Enumerable.Range(0, controller.LightCount)
+            _colors = (from index in Enumerable.Range(0, information.LightCount)
                        select Color.Random(random)).ToList();
         }
     }

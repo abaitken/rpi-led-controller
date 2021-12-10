@@ -3,6 +3,9 @@ using System;
 
 namespace Lighting.Animations
 {
+    /// <summary>
+    /// Sets all lights as per the pattern, but applies new values from left to right
+    /// </summary>
     public class AnimationFillLeft : Animation
     {
         private int _index;

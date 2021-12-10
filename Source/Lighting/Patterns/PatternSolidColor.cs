@@ -12,7 +12,7 @@ namespace Lighting.Patterns
         {
         }
 
-        public override void Reset(ILightingController controller, Random random)
+        public override void Reset(ILightingInformation information, Random random)
         {
         }
     }

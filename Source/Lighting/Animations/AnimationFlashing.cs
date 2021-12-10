@@ -3,6 +3,9 @@ using System;
 
 namespace Lighting.Animations
 {
+    /// <summary>
+    /// Sets the pattern but alters the brightness from min to max a random number of times
+    /// </summary>
     public class AnimationFlashing : Animation
     {
         private int _remainingIterations;

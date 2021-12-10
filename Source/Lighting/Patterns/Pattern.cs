@@ -6,6 +6,6 @@ namespace Lighting.Patterns
     {
         public abstract Color this[int index] { get; }
         public abstract void NextState(Random random);
-        public abstract void Reset(ILightingController controller, Random random);
+        public abstract void Reset(ILightingInformation information, Random random);
     }
 }

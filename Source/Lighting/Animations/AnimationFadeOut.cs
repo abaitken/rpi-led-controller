@@ -3,6 +3,9 @@ using System;
 
 namespace Lighting.Animations
 {
+    /// <summary>
+    /// Sets all lights as per the pattern, but fades out the brightness
+    /// </summary>
     public class AnimationFadeOut : Animation
     {
         private const byte BRIGHTNESS_STEP_ADJUST = 1;

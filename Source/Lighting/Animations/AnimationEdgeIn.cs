@@ -3,6 +3,9 @@ using System;
 
 namespace Lighting.Animations
 {
+    /// <summary>
+    /// Sets the lights starting from the outside edges moving to the middle
+    /// </summary>
     public class AnimationEdgeIn : Animation
     {
         private int _middle;

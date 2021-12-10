@@ -3,6 +3,9 @@ using System;
 
 namespace Lighting.Animations
 {
+    /// <summary>
+    /// Sets the lights starting from the middle moving to the outside edges
+    /// </summary>
     public class AnimationCenterOut : Animation
     {
         private int _left;
