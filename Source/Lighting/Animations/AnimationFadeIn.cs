@@ -8,34 +8,37 @@ namespace Lighting.Animations
     /// </summary>
     public class AnimationFadeIn : Animation
     {
-        private const byte BRIGHTNESS_STEP_ADJUST = 1;
+        public byte BrightnessAdjust { get; set; } = 1;
+        public byte BrightnessStart { get; set; } = 0;
+        public byte BrightnessEnd { get; set; } = 150;
+
         private byte _brightness;
 
         public override int Begin(ILightingController controller, IPattern pattern, Random random)
         {
-            _brightness = 0;
+            _brightness = BrightnessStart;
 
+            controller.Brightness = _brightness;
             controller.Update();
 
-            return (int)Math.Ceiling((double)controller.Brightness / BRIGHTNESS_STEP_ADJUST);
+            var range = BrightnessEnd - BrightnessStart;
+            return (int)Math.Ceiling((double)range / BrightnessAdjust);
         }
 
         public override AnimationState Step(ILightingController controller, IPattern pattern, Random random)
         {
-            if(_brightness == 0)
-            {
-                for (int index = 0; index < controller.LightCount; index++)
-                    controller[index].Color = pattern[index];
-                controller.Update();
-            }
+            for (int index = 0; index < controller.LightCount; index++)
+                controller[index].Color = pattern[index];
+
+            _brightness += BrightnessAdjust;
+            if (_brightness > BrightnessEnd)
+                _brightness = BrightnessEnd;
+
             controller.Brightness = _brightness;
-            _brightness += BRIGHTNESS_STEP_ADJUST;
-
-            if (_brightness < controller.Brightness)
-                return AnimationState.InProgress;
-
-            controller.Brightness = (controller.Brightness);
             controller.Update();
+
+            if (_brightness < BrightnessEnd)
+                return AnimationState.InProgress;
 
             return AnimationState.Complete;
         }

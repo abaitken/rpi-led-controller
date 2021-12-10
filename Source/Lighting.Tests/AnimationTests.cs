@@ -219,34 +219,110 @@ namespace Lighting.Tests
             }
         }
 
+        private class MockLightingController : ILightingController
+        {
+            public ILight this[int index]
+            {
+                get
+                {
+                    return new MockLight();
+                }
+            }
+
+            public int LightCount { get; set; }
+
+            public byte DefaultBrightness { get; set; }
+
+            public byte Brightness { get; set; }
+
+            public void Update()
+            {
+
+            }
+
+            private class MockLight : ILight
+            {
+                public Color Color 
+                { 
+                    get => throw new NotImplementedException(); 
+                    set
+                    {
+                        /* Do nothing */
+                    }
+                }
+            }
+        }
+
         [TestMethod]
         public void FadeIn()
         {
-            var subject = new AnimationFadeIn();
-
+            var subject = new AnimationFadeIn
             {
-                var controllerMock = new Mock<ILightingController>();
-                controllerMock.Setup(i => i.LightCount).Returns(10);
-                controllerMock.Setup(i => i.Brightness).Returns(150);
-                controllerMock.Setup(i => i.DefaultBrightness).Returns(150);
-                Assert.AreEqual(150, subject.Begin(controllerMock.Object, pattern, random));
-            }
-            Assert.Inconclusive();
+                BrightnessStart = 10,
+                BrightnessEnd = 150,
+                BrightnessAdjust = 28
+            };
+
+            var controllerMock = new MockLightingController
+            {
+                Brightness = 200,
+                LightCount = 10,
+                DefaultBrightness = 150
+            };
+
+            Assert.AreEqual(5, subject.Begin(controllerMock, pattern, random));
+            Assert.AreEqual(10, controllerMock.Brightness);
+
+            Assert.AreEqual(AnimationState.InProgress, subject.Step(controllerMock, pattern, random));
+            Assert.AreEqual(38, controllerMock.Brightness);
+
+            Assert.AreEqual(AnimationState.InProgress, subject.Step(controllerMock, pattern, random));
+            Assert.AreEqual(66, controllerMock.Brightness);
+
+            Assert.AreEqual(AnimationState.InProgress, subject.Step(controllerMock, pattern, random));
+            Assert.AreEqual(94, controllerMock.Brightness);
+
+            Assert.AreEqual(AnimationState.InProgress, subject.Step(controllerMock, pattern, random));
+            Assert.AreEqual(122, controllerMock.Brightness);
+
+            Assert.AreEqual(AnimationState.Complete, subject.Step(controllerMock, pattern, random));
+            Assert.AreEqual(150, controllerMock.Brightness);
         }
 
         [TestMethod]
         public void FadeOut()
         {
-            var subject = new AnimationFadeOut();
-
+            var subject = new AnimationFadeOut
             {
-                var controllerMock = new Mock<ILightingController>();
-                controllerMock.Setup(i => i.LightCount).Returns(10);
-                controllerMock.Setup(i => i.Brightness).Returns(150);
-                controllerMock.Setup(i => i.DefaultBrightness).Returns(150);
-                Assert.AreEqual(150, subject.Begin(controllerMock.Object, pattern, random));
-            }
-            Assert.Inconclusive();
+                BrightnessStart = 150,
+                BrightnessEnd = 10,
+                BrightnessAdjust = 28
+            };
+
+            var controllerMock = new MockLightingController
+            {
+                Brightness = 200,
+                LightCount = 10,
+                DefaultBrightness = 150
+            };
+
+            Assert.AreEqual(5, subject.Begin(controllerMock, pattern, random));
+            Assert.AreEqual(150, controllerMock.Brightness);
+
+            Assert.AreEqual(AnimationState.InProgress, subject.Step(controllerMock, pattern, random));
+            Assert.AreEqual(122, controllerMock.Brightness);
+
+            Assert.AreEqual(AnimationState.InProgress, subject.Step(controllerMock, pattern, random));
+            Assert.AreEqual(94, controllerMock.Brightness);
+
+            Assert.AreEqual(AnimationState.InProgress, subject.Step(controllerMock, pattern, random));
+            Assert.AreEqual(66, controllerMock.Brightness);
+
+            Assert.AreEqual(AnimationState.InProgress, subject.Step(controllerMock, pattern, random));
+            Assert.AreEqual(38, controllerMock.Brightness);
+
+            Assert.AreEqual(AnimationState.Complete, subject.Step(controllerMock, pattern, random));
+            Assert.AreEqual(10, controllerMock.Brightness);
         }
 
         [TestMethod]

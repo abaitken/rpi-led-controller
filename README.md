@@ -57,4 +57,4 @@ A combination of multiple scenes.
 
 - Sometimes there is a long pause on a single pattern (FIXED? Needs Testing)
 - Sometimes there an odd color left over on the first/last LED (FIXED? Needs Testing)
-- Fade out animation does not seem to be working
+
