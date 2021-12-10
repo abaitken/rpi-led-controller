@@ -7,19 +7,17 @@ namespace Lighting.Dynamic
     public abstract class TypeFactory<T>
     {
         private readonly List<Type> _types;
-        private readonly Random _random;
 
-        public TypeFactory(TypeSource<T> typeSource, Random random)
+        public TypeFactory(TypeSource<T> typeSource)
         {
             var types = typeSource.GetTypes();
 
             _types = types.ToList();
-            _random = random;
         }
 
-        public T GenerateRandom()
+        public T GenerateRandom(Random random)
         {
-            var type = _types[_random.Next(_types.Count)];
+            var type = _types[random.Next(_types.Count)];
 
             return (T)Activator.CreateInstance(type);
         }

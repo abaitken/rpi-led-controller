@@ -8,8 +8,8 @@ namespace Lighting.Animations
 {
     public class AnimationFactory : TypeFactory<IAnimation>
     {
-        public AnimationFactory(TypeSource<IAnimation> typeSource, Random random)
-            : base(typeSource, random)
+        public AnimationFactory(TypeSource<IAnimation> typeSource)
+            : base(typeSource)
         {
 
         }

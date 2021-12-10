@@ -33,9 +33,9 @@ namespace Lighting.Demos
 
             public CommandReader(string commands, Random random)
             {
-                _animationFactory = new AnimationFactory(TypeSource<IAnimation>.FromThisAssembly(), random);
-                _patternFactory = new PatternFactory(TypeSource<IPattern>.FromThisAssembly(), random);
-                _timingFactory = new TimingFactory(TypeSource<ITiming>.FromThisAssembly(), random);
+                _animationFactory = new AnimationFactory(TypeSource<IAnimation>.FromThisAssembly());
+                _patternFactory = new PatternFactory(TypeSource<IPattern>.FromThisAssembly());
+                _timingFactory = new TimingFactory(TypeSource<ITiming>.FromThisAssembly());
                 _commands = commands;
             }
 

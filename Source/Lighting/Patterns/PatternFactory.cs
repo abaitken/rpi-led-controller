@@ -6,8 +6,8 @@ namespace Lighting.Patterns
 {
     public class PatternFactory : TypeFactory<IPattern>
     {
-        public PatternFactory(TypeSource<IPattern> typeSource, Random random)
-            : base(typeSource, random)
+        public PatternFactory(TypeSource<IPattern> typeSource)
+            : base(typeSource)
         {
 
         }
