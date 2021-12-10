@@ -8,31 +8,22 @@ namespace LightingConsole
     public class LightingController : ILightingController
     {
         private readonly Controller _controller;
-        private readonly WS281x _rpi;
+        private readonly WS281x _ws281x;
         private readonly int _lightCount;
         private readonly byte _defaultBrightness;
 
         public LightingController(int lightCount, int controlPin, ushort defaultBrightness = 150)
         {
+            _lightCount = lightCount;
+            _defaultBrightness = defaultBrightness < 0 || defaultBrightness > 255 ? (byte)150 : (byte)defaultBrightness;
 
             //The default settings uses a frequency of 800000 Hz and the DMA channel 10.
             var settings = Settings.CreateDefaultSettings();
 
-            //Use 16 LEDs and GPIO Pin 18.
-            //Set brightness to maximum (255)
             //Use Unknown as strip type. Then the type will be set in the native assembly.
-            _controller = settings.AddController(lightCount, GetPin(controlPin), StripType.WS2812_STRIP, ControllerType.SPI, 255, false);
+            _controller = settings.AddController(_lightCount, GetPin(controlPin), StripType.WS2812_STRIP, ControllerType.SPI, _defaultBrightness, false);
 
-            _rpi = new WS281x(settings);
-            _lightCount = lightCount;
-            _defaultBrightness = defaultBrightness < 0 || defaultBrightness > 255 ? (byte)150 : (byte)defaultBrightness;
-            //{
-            //    //Set the color of the first LED of controller 0 to blue
-            //    controller.SetLED(0, Color.Blue);
-            //    //Set the color of the second LED of controller 0 to red
-            //    controller.SetLED(1, Color.Red);
-            //    rpi.Render();
-            //}
+            _ws281x = new WS281x(settings);
         }
 
         private static Pin GetPin(int controlPin)
@@ -78,7 +69,7 @@ namespace LightingConsole
 
         public void Update()
         {
-            _rpi.Render();
+            _ws281x.Render();
         }
     }
 }
