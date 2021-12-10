@@ -11,7 +11,7 @@ namespace Lighting.Animations
         private int _remainingIterations;
         private bool _on;
 
-        public override int Begin(ILightingController controller, IPattern pattern, Random random)
+        public override int Begin(ILightingController controller, IPatternInformation pattern, Random random)
         {
             _remainingIterations = random.Next(4, 8);
 
@@ -24,7 +24,7 @@ namespace Lighting.Animations
             return _remainingIterations;
         }
 
-        public override AnimationState Step(ILightingController controller, IPattern pattern, Random random)
+        public override AnimationState Step(ILightingController controller, IPatternInformation pattern, Random random)
         {
             if (_on)
             {

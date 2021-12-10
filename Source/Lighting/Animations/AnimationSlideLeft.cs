@@ -7,13 +7,13 @@ namespace Lighting.Animations
     {
         private int _offset;
 
-        public override int Begin(ILightingController controller, IPattern pattern, Random random)
+        public override int Begin(ILightingController controller, IPatternInformation pattern, Random random)
         {
             _offset = controller.LightCount - 1;
             return controller.LightCount;
         }
 
-        public override AnimationState Step(ILightingController controller, IPattern pattern, Random random)
+        public override AnimationState Step(ILightingController controller, IPatternInformation pattern, Random random)
         {
             for (int index = _offset; index < controller.LightCount; index++)
                 controller[index].Color = pattern[index - _offset];

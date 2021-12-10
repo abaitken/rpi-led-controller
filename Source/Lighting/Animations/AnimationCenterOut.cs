@@ -11,14 +11,14 @@ namespace Lighting.Animations
         private int _left;
         private int _right;
 
-        public override int Begin(ILightingController controller, IPattern pattern, Random random)
+        public override int Begin(ILightingController controller, IPatternInformation pattern, Random random)
         {
             _left = (int)Math.Floor((double)(controller.LightCount - 1) / 2);
             _right = (int)Math.Ceiling((double)controller.LightCount / 2);
             return controller.LightCount;
         }
 
-        public override AnimationState Step(ILightingController controller, IPattern pattern, Random random)
+        public override AnimationState Step(ILightingController controller, IPatternInformation pattern, Random random)
         {
             if (_left >= 0)
             {

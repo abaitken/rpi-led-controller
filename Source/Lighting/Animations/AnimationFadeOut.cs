@@ -13,7 +13,7 @@ namespace Lighting.Animations
         public byte BrightnessEnd { get; set; } = 0;
         private byte _brightness;
 
-        public override int Begin(ILightingController controller, IPattern pattern, Random random)
+        public override int Begin(ILightingController controller, IPatternInformation pattern, Random random)
         {
             _brightness = BrightnessStart;
 
@@ -24,7 +24,7 @@ namespace Lighting.Animations
             return (int)Math.Ceiling((double)range / BrightnessAdjust);
         }
 
-        public override AnimationState Step(ILightingController controller, IPattern pattern, Random random)
+        public override AnimationState Step(ILightingController controller, IPatternInformation pattern, Random random)
         {
             for (int index = 0; index < controller.LightCount; index++)
                 controller[index].Color = pattern[index];

@@ -15,7 +15,7 @@ namespace Lighting.Animations
         /// <param name="pattern">Pattern</param>
         /// <param name="random">Random</param>
         /// <returns>The remaining number of iterations</returns>
-        int Begin(ILightingController controller, IPattern pattern, Random random);
+        int Begin(ILightingController controller, IPatternInformation pattern, Random random);
 
         /// <summary>
         /// Applies the next state of the animation
@@ -24,6 +24,6 @@ namespace Lighting.Animations
         /// <param name="pattern">Pattern</param>
         /// <param name="random">Random</param>
         /// <returns>Whether the animation is in progress or completed</returns>
-        AnimationState Step(ILightingController controller, IPattern pattern, Random random);
+        AnimationState Step(ILightingController controller, IPatternInformation pattern, Random random);
     }
 }

@@ -10,13 +10,13 @@ namespace Lighting.Animations
     {
         private int _index;
 
-        public override int Begin(ILightingController controller, IPattern pattern, Random random)
+        public override int Begin(ILightingController controller, IPatternInformation pattern, Random random)
         {
             _index = 0;
             return controller.LightCount;
         }
 
-        public override AnimationState Step(ILightingController controller, IPattern pattern, Random random)
+        public override AnimationState Step(ILightingController controller, IPatternInformation pattern, Random random)
         {
             controller[_index].Color = pattern[_index];
 

@@ -12,7 +12,7 @@ namespace Lighting.Animations
         private int _left;
         private int _right;
 
-        public override int Begin(ILightingController controller, IPattern pattern, Random random)
+        public override int Begin(ILightingController controller, IPatternInformation pattern, Random random)
         {
             _middle = (int)Math.Floor(controller.LightCount / 2d);
             _left = 0;
@@ -20,7 +20,7 @@ namespace Lighting.Animations
             return controller.LightCount;
         }
 
-        public override AnimationState Step(ILightingController controller, IPattern pattern, Random random)
+        public override AnimationState Step(ILightingController controller, IPatternInformation pattern, Random random)
         {
             if (_left <= _middle)
             {

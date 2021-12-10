@@ -10,13 +10,13 @@ namespace Lighting.Animations
     {
         private int _remainingIterations;
         // TODO : Should be improved to apply colour to all lights, especially if its a solid colour
-        public override int Begin(ILightingController controller, IPattern pattern, Random random)
+        public override int Begin(ILightingController controller, IPatternInformation pattern, Random random)
         {
             _remainingIterations = random.Next(200, 400);
             return _remainingIterations;
         }
 
-        public override AnimationState Step(ILightingController controller, IPattern pattern, Random random)
+        public override AnimationState Step(ILightingController controller, IPatternInformation pattern, Random random)
         {
             int index = random.Next(controller.LightCount);
             controller[index].Color = pattern[index];
