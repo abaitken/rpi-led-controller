@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Lighting
 {
+    [DebuggerDisplay("R = {R}, G = {G}, B = {B}")]
     public struct Color : IEquatable<Color>
     {
         public byte R { get; set; }
@@ -45,6 +47,11 @@ namespace Lighting
         }
 
         public static implicit operator Color(int rgb) => new Color(rgb);
+
+        public override string ToString()
+        {
+            return $"R = {R}, G = {G}, B = {B}";
+        }
 
         public override int GetHashCode()
         {
