@@ -4,8 +4,9 @@ namespace Lighting.Timings
 {
     public class TimingSlowDown : Timing
     {
-        const int TIMING_SLOWEST = 300;
-        const int TIMING_FASTEST = 10;
+        public int StartDelay { get; set; } = 10;
+        public int EndDelay { get; set; } = 300;
+
         private int _currentDelay;
         private int _timingChange;
 
@@ -13,18 +14,18 @@ namespace Lighting.Timings
         {
             Sleep(_currentDelay);
 
-            if (_currentDelay < TIMING_SLOWEST)
+            if (_currentDelay < EndDelay)
             {
                 _currentDelay += _timingChange;
-                if (_currentDelay > TIMING_SLOWEST)
-                    _currentDelay = TIMING_SLOWEST;
+                if (_currentDelay > EndDelay)
+                    _currentDelay = EndDelay;
             }
         }
 
         public override void Reset(int totalSteps)
         {
-            _currentDelay = TIMING_FASTEST;
-            _timingChange = (int)Math.Ceiling((double)(TIMING_SLOWEST - TIMING_FASTEST) / totalSteps);
+            _currentDelay = StartDelay;
+            _timingChange = (int)Math.Ceiling((double)(EndDelay - StartDelay) / totalSteps);
         }
     }
 }
