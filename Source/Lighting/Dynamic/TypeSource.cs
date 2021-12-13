@@ -23,7 +23,7 @@ namespace Lighting.Dynamic
             return new TypeSource<T>().Include(assemblies);
         }
 
-        public static TypeSource<T> FromThisAssembly()
+        internal static TypeSource<T> FromThisAssembly()
         {
             return From(Assembly.GetExecutingAssembly());
         }
