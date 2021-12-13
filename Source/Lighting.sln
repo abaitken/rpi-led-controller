@@ -9,9 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lighting.Tests", "Lighting.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightingConsole", "LightingConsole\LightingConsole.csproj", "{7CB86C40-EF28-4689-BBD9-C286F0FEA00A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighting.ws281x", "Lighting.ws281x\Lighting.ws281x.csproj", "{7A6FB29B-E717-46B5-8287-5352166D6547}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lighting.ws281x", "Lighting.ws281x\Lighting.ws281x.csproj", "{7A6FB29B-E717-46B5-8287-5352166D6547}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightingDashboard", "LightingDashboard\LightingDashboard.csproj", "{8CA5531A-A382-4EA2-A02B-90C093E9A5B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightingDashboard", "LightingDashboard\LightingDashboard.csproj", "{8CA5531A-A382-4EA2-A02B-90C093E9A5B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighting.ConfigurationProxy", "Lighting.ConfigurationProxy\Lighting.ConfigurationProxy.csproj", "{15B2346C-AD32-462B-A40C-BAD94E792F35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightingServer", "LightingServer\LightingServer.csproj", "{E610CF24-B565-451E-9162-966B18C2410E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +65,22 @@ Global
 		{8CA5531A-A382-4EA2-A02B-90C093E9A5B5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8CA5531A-A382-4EA2-A02B-90C093E9A5B5}.Release|ARM64.ActiveCfg = Release|Any CPU
 		{8CA5531A-A382-4EA2-A02B-90C093E9A5B5}.Release|ARM64.Build.0 = Release|Any CPU
+		{15B2346C-AD32-462B-A40C-BAD94E792F35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15B2346C-AD32-462B-A40C-BAD94E792F35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15B2346C-AD32-462B-A40C-BAD94E792F35}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{15B2346C-AD32-462B-A40C-BAD94E792F35}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{15B2346C-AD32-462B-A40C-BAD94E792F35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15B2346C-AD32-462B-A40C-BAD94E792F35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15B2346C-AD32-462B-A40C-BAD94E792F35}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{15B2346C-AD32-462B-A40C-BAD94E792F35}.Release|ARM64.Build.0 = Release|Any CPU
+		{E610CF24-B565-451E-9162-966B18C2410E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E610CF24-B565-451E-9162-966B18C2410E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E610CF24-B565-451E-9162-966B18C2410E}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{E610CF24-B565-451E-9162-966B18C2410E}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{E610CF24-B565-451E-9162-966B18C2410E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E610CF24-B565-451E-9162-966B18C2410E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E610CF24-B565-451E-9162-966B18C2410E}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{E610CF24-B565-451E-9162-966B18C2410E}.Release|ARM64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
