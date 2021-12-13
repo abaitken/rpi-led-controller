@@ -16,7 +16,7 @@
         /// </summary>
         /// <param name="index">Index</param>
         /// <returns>Light</returns>
-        ILight this[int index] { get; }
+        new ILight this[int index] { get; }
 
         /// <summary>
         /// Gets or sets the current brightness

@@ -127,6 +127,8 @@ namespace Lighting.Tests
 
         private class MockLightingInformation : ILightingInformation
         {
+            public ILightInformation this[int index] => throw new NotImplementedException();
+
             public int LightCount { get; set; }
 
             public byte DefaultBrightness => throw new NotImplementedException();

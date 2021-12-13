@@ -6,7 +6,7 @@ using System.Text;
 
 namespace LightingConsole
 {
-    class ConsoleController : ILightingController
+    class ConsoleController : LightingController
     {
         private readonly List<Color> _lights;
         private readonly char[] _chars = new[] { '*', '#', '@', '+' };
@@ -36,15 +36,15 @@ namespace LightingConsole
             }
         }
 
-        public ILight this[int index] => new Light(_lights, index);
+        public override ILight this[int index] => new Light(_lights, index);
 
-        public int LightCount => Console.BufferWidth - 1;
+        public override int LightCount => Console.BufferWidth - 1;
 
-        public byte DefaultBrightness => 150;
+        public override byte DefaultBrightness => 150;
 
-        public byte Brightness { get; set; }
+        public override byte Brightness { get; set; }
 
-        public void Update()
+        public override void Update()
         {
             Console.CursorTop = Console.CursorTop == 0 ? Console.CursorTop : Console.CursorTop - 1;
 

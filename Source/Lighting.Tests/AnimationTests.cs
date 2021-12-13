@@ -229,6 +229,8 @@ namespace Lighting.Tests
                 }
             }
 
+            ILightInformation ILightingInformation.this[int index] => throw new NotImplementedException();
+
             public int LightCount { get; set; }
 
             public byte DefaultBrightness { get; set; }

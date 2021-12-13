@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace LightingConsole
 {
-    public class LightingController : ILightingController
+    public class LightingController : Lighting.LightingController
     {
         private readonly Controller _controller;
         private readonly WS281x _ws281x;
@@ -59,15 +59,15 @@ namespace LightingConsole
             }
         }
 
-        public ILight this[int index] => new Light(_controller, index);
+        public override ILight this[int index] => new Light(_controller, index);
 
-        public int LightCount => _lightCount;
+        public override int LightCount => _lightCount;
 
-        public byte DefaultBrightness => _defaultBrightness;
+        public override byte DefaultBrightness => _defaultBrightness;
 
-        public byte Brightness { get => _controller.Brightness; set => _controller.Brightness = value; }
+        public override byte Brightness { get => _controller.Brightness; set => _controller.Brightness = value; }
 
-        public void Update()
+        public override void Update()
         {
             _ws281x.Render();
         }
