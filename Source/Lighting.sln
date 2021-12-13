@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighting.ConfigurationProxy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightingServer", "LightingServer\LightingServer.csproj", "{E610CF24-B565-451E-9162-966B18C2410E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{E6E07948-B90C-4406-BB1B-B51333AE7924}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libaries", "Libaries", "{BAF2FB3D-D407-4CF4-AB47-40A88BA172F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,6 +88,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E24C9987-D975-472A-9B40-D3021047681A} = {BAF2FB3D-D407-4CF4-AB47-40A88BA172F6}
+		{E37364BA-3460-47D6-9387-22EF2A91E7A1} = {E6E07948-B90C-4406-BB1B-B51333AE7924}
+		{7CB86C40-EF28-4689-BBD9-C286F0FEA00A} = {E6E07948-B90C-4406-BB1B-B51333AE7924}
+		{7A6FB29B-E717-46B5-8287-5352166D6547} = {BAF2FB3D-D407-4CF4-AB47-40A88BA172F6}
+		{15B2346C-AD32-462B-A40C-BAD94E792F35} = {BAF2FB3D-D407-4CF4-AB47-40A88BA172F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EF783A13-BB2F-4463-8DCF-990F6DAA2857}
