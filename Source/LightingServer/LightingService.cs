@@ -12,8 +12,10 @@ using System.Threading.Tasks;
 
 namespace LightingServer
 {
-    class LightingService : BackgroundService
+    class LightingService : BackgroundService, ILightingService
     {
+        public string CurrentDemo { get; set; } = "Ready";
+
         class NullController : LightingController
         {
             public override ILight this[int index] => new Light();
@@ -104,6 +106,7 @@ namespace LightingServer
 
             while (!stoppingToken.IsCancellationRequested)
             {
+                var currentDemo = CurrentDemo;
                 var demo = new ServiceReadyDemo();
                 demo.Begin(controller, random);
 
@@ -111,6 +114,9 @@ namespace LightingServer
                 {
                     if (stoppingToken.IsCancellationRequested)
                         break;
+
+                    //if (currentDemo != CurrentDemo)
+                        // TODO !
                 }
             }
         }

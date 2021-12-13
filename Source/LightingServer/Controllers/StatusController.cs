@@ -9,14 +9,16 @@ using System.Threading.Tasks;
 namespace LightingServer.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class StatusController : ControllerBase
     { 
         private readonly ILogger<StatusController> _logger;
+        private readonly ILightingService _lightingService;
 
-        public StatusController(ILogger<StatusController> logger)
+        public StatusController(ILogger<StatusController> logger, ILightingService lightingService)
         {
             _logger = logger;
+            _lightingService = lightingService;
         }
 
         [HttpGet]
@@ -24,8 +26,15 @@ namespace LightingServer.Controllers
         {
             return new LightingStatus
             {
-                Demo = "Ready"
+                Demo = _lightingService.CurrentDemo
             };
+        }
+
+        [HttpGet("{id}")]
+        public LightingStatus ChangeDemo(string id)
+        {
+            _lightingService.CurrentDemo = id;
+            return Get();
         }
     }
 }
