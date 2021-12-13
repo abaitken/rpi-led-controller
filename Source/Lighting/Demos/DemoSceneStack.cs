@@ -16,7 +16,7 @@ namespace Lighting.Demos
         }
 
         protected abstract IScene FirstScene();
-        
+
         /// <summary>
         /// Gets the next scene
         /// </summary>
@@ -25,14 +25,15 @@ namespace Lighting.Demos
 
         public override sealed DemoState Step(ILightingController controller, Random random)
         {
-            if (_currentScene.Step(controller, random) == SceneState.Complete)
-                _currentScene = NextScene();
+            if (_currentScene.Step(controller, random) == SceneState.InProgress)
+                return DemoState.InProgress;
 
-            if(_currentScene == null)
+            _currentScene = NextScene();
+            if (_currentScene == null)
                 return DemoState.Complete;
 
+            _currentScene.Begin(controller, random);
             return DemoState.InProgress;
         }
-
     }
 }
