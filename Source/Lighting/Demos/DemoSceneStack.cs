@@ -1,39 +1,28 @@
 ﻿using Lighting.Scenes;
-using System;
+using System.Collections.Generic;
 
 namespace Lighting.Demos
 {
-    public abstract class DemoSceneStack : Demo
+    /// <summary>
+    /// Simple implementation of the DemoSceneEnumerator using a enumerable list of scenes
+    /// </summary>
+    public abstract class DemoSceneStack : DemoSceneEnumerator
     {
-        private IScene _currentScene;
+        private IEnumerator<IScene> _scenes;
 
-        public override sealed void Begin(ILightingController controller, Random random)
+        protected abstract IEnumerable<IScene> CreateScenes();
+
+        protected override IScene FirstScene()
         {
-            if (_currentScene == null)
-                _currentScene = FirstScene();
-
-            _currentScene.Begin(controller, random);
+            _scenes = CreateScenes().GetEnumerator();
+            return NextScene();
         }
 
-        protected abstract IScene FirstScene();
-
-        /// <summary>
-        /// Gets the next scene
-        /// </summary>
-        /// <returns>Next scene or NULL if no more scenes are available</returns>
-        protected abstract IScene NextScene();
-
-        public override sealed DemoState Step(ILightingController controller, Random random)
+        protected override IScene NextScene()
         {
-            if (_currentScene.Step(controller, random) == SceneState.InProgress)
-                return DemoState.InProgress;
-
-            _currentScene = NextScene();
-            if (_currentScene == null)
-                return DemoState.Complete;
-
-            _currentScene.Begin(controller, random);
-            return DemoState.InProgress;
+            if (_scenes.MoveNext())
+                return _scenes.Current;
+            return null;
         }
     }
 }
