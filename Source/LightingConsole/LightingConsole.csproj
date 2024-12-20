@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net5</TargetFrameworks>
+    <TargetFrameworks>net8</TargetFrameworks>
     <Platforms>AnyCPU;ARM64</Platforms>
   </PropertyGroup>
 

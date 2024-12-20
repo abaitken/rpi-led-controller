@@ -45,6 +45,7 @@ namespace LightingConsole
         {
             private readonly Controller _controller;
             private readonly int _index;
+            private Color? _color;
 
             public Light(Controller controller, int index)
             {
@@ -54,8 +55,18 @@ namespace LightingConsole
 
             public Color Color 
             { 
-                get => _controller.LEDs.ElementAt(_index).Color.ToColor(); 
-                set => _controller.SetLED(_index, value.ToColor()); 
+                get
+                {
+                    if (_color.HasValue)
+                        return _color.Value;
+
+                    return Color.Black;
+                }
+                set
+                {
+                    _color = value;
+                    _controller.SetLED(_index, value.ToColor());
+                }
             }
         }
 
