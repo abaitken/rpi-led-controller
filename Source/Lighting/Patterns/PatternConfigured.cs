@@ -7,7 +7,7 @@ namespace Lighting.Patterns
     {
         private Color[] _colours;
 
-        public Color[] Configured { get; set; }
+        public Color[] Configured { get; set; } = new Color[0];
 
         public sealed override Color this[int index] => _colours[index];
 
