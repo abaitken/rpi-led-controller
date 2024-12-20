@@ -7,7 +7,7 @@ namespace Lighting.Patterns
     /// </summary>
     public class PatternSolidColor : Pattern
     {
-        public Color Color { get; set; }
+        public Color Color { get; set; } = Color.White;
 
         public sealed override Color this[int index] => Color;
 
