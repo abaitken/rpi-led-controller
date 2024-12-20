@@ -1,5 +1,6 @@
 ﻿using Lighting.Animations;
 using Lighting.Dynamic;
+using Lighting.Palette;
 using Lighting.Patterns;
 using Lighting.Timings;
 using System;
@@ -22,11 +23,11 @@ namespace Lighting.Scenes
         public SceneRandom()
         {
             _animationFactory = new AnimationFactory(TypeSource<IAnimation>.FromThisAssembly());
-            _patternFactory = new PatternFactory(TypeSource<IPattern>.FromThisAssembly().Exclude<PatternSolidColor>());
+            _patternFactory = new PatternFactory(TypeSource<IPattern>.FromThisAssembly());
             _timingFactory = new TimingFactory(TypeSource<ITiming>.FromThisAssembly());
         }
 
-        public override void Begin(ILightingController controller, Random random)
+        public override void Begin(ILightingController controller, Random random, IPalette palette)
         {
             var nextPattern = _patternFactory.GenerateRandom(random);
 
@@ -51,19 +52,19 @@ namespace Lighting.Scenes
             _currentTiming = _timingFactory.GenerateRandom(random);
             _currentAnimation = _animationFactory.GenerateRandom(random);
 
-            _currentPattern.Reset(controller, random);
+            _currentPattern.Reset(controller, random, palette);
             var totalSteps = _currentAnimation.Begin(controller, _currentPattern, random);
             _currentTiming.Reset(totalSteps);
         }
 
-        public override SceneState Step(ILightingController controller, Random random)
+        public override SceneState Step(ILightingController controller, Random random, IPalette palette)
         {
             if (_currentAnimation.Step(controller, _currentPattern, random) == AnimationState.Complete)
             {
                 return SceneState.Complete;
             }
             _currentTiming.Delay();
-            _currentPattern.NextState(random);
+            _currentPattern.NextState(random, palette);
 
             return SceneState.InProgress;
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lighting.Palette;
+using System;
 
 namespace Lighting.Patterns
 {
@@ -11,11 +12,11 @@ namespace Lighting.Patterns
 
         public sealed override Color this[int index] => Color;
 
-        public override void NextState(Random random)
+        public override void NextState(Random random, IPalette palette)
         {
         }
 
-        public override void Reset(ILightingInformation information, Random random)
+        public override void Reset(ILightingInformation information, Random random, IPalette palette)
         {
         }
     }

@@ -1,4 +1,5 @@
 using Lighting.Animations;
+using Lighting.Palette;
 using Lighting.Patterns;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -41,11 +42,11 @@ namespace Lighting.Tests
             }
             public override Color this[int index] => _colors[index];
 
-            public override void NextState(Random random)
+            public override void NextState(Random random, IPalette palette)
             {
             }
 
-            public override void Reset(ILightingInformation information, Random random)
+            public override void Reset(ILightingInformation information, Random random, IPalette palette)
             {
             }
         }

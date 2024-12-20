@@ -1,5 +1,6 @@
 ﻿using Lighting.Animations;
 using Lighting.Dynamic;
+using Lighting.Palette;
 using Lighting.Patterns;
 using Lighting.Timings;
 using System;
@@ -11,6 +12,8 @@ namespace Lighting.Demos
         IAnimation _currentAnimation;
         ITiming _currentTiming;
         IPattern _currentPattern;
+        IPalette _currentPalette;
+
         private CommandReader _commands;
         private readonly string _commandText;
 
@@ -30,6 +33,7 @@ namespace Lighting.Demos
             IAnimation _currentAnimation;
             ITiming _currentTiming;
             IPattern _currentPattern;
+            IPalette _currentPalette;
 
             public CommandReader(string commands, Random random)
             {
@@ -39,7 +43,7 @@ namespace Lighting.Demos
                 _commands = commands;
             }
 
-            internal bool NextScene(out IAnimation animation, out IPattern pattern, out ITiming timing)
+            internal bool NextScene(out IAnimation animation, out IPattern pattern, out ITiming timing, out IPalette palette)
             {
                 // TODO : Parse command text and create next animation/pattern/timing as required
                 // Read up to (including) the next animation and return
@@ -49,11 +53,13 @@ namespace Lighting.Demos
                 _currentAnimation = null /* TODO */;
                 _currentPattern = null /* TODO */;
                 _currentTiming = null /* TODO */;
+                _currentPalette = null /* TODO */;
 
 
                 animation = _currentAnimation;
                 pattern = _currentPattern;
                 timing = _currentTiming;
+                palette = _currentPalette;
                 return false;
             }
         }
@@ -66,7 +72,7 @@ namespace Lighting.Demos
 
         bool NextScene(ILightingController controller, Random random)
         {
-            return _commands.NextScene(out _currentAnimation, out _currentPattern, out _currentTiming);
+            return _commands.NextScene(out _currentAnimation, out _currentPattern, out _currentTiming, out _currentPalette);
         }
 
         public override DemoState Step(ILightingController controller, Random random)
@@ -81,7 +87,7 @@ namespace Lighting.Demos
                 return DemoState.InProgress;
             }
             _currentTiming.Delay();
-            _currentPattern.NextState(random);
+            _currentPattern.NextState(random, _currentPalette);
 
             return DemoState.InProgress;
         }

@@ -1,4 +1,5 @@
-﻿using Lighting.Patterns;
+﻿using Lighting.Palette;
+using Lighting.Patterns;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -17,16 +18,16 @@ namespace Lighting.Tests
             {
                 LightCount = 10
             };
-
+            var pallete = new PaletteFixed(Color.Red);
             var random = new Random(0);
-            subject.Reset(info, random);
+            subject.Reset(info, random, pallete);
 
             for (int i = 0; i < 10; i++)
             {
                 Assert.AreEqual(Color.Blue, subject[i]);
             }
             
-            subject.NextState(random);
+            subject.NextState(random, pallete);
 
             for (int i = 0; i < 10; i++)
             {
@@ -43,16 +44,16 @@ namespace Lighting.Tests
             {
                 LightCount = 10
             };
-
+            var palette = new PaletteClear();
             var random = new Random(0);
-            subject.Reset(info, random);
+            subject.Reset(info, random, palette);
 
             for (int i = 0; i < 10; i++)
             {
                 Assert.AreEqual(Color.Black, subject[i]);
             }
 
-            subject.NextState(random);
+            subject.NextState(random, palette);
 
             for (int i = 0; i < 10; i++)
             {
@@ -70,8 +71,9 @@ namespace Lighting.Tests
                 LightCount = 10
             };
 
+            var pallete = new PaletteRandom();
             var random = new Random(0);
-            subject.Reset(info, random);
+            subject.Reset(info, random, pallete);
 
 
             Assert.AreEqual(new Color(45, 0, 210), subject[0]);
@@ -85,7 +87,7 @@ namespace Lighting.Tests
             Assert.AreEqual(new Color(240, 0, 15), subject[8]);
             Assert.AreEqual(new Color(45, 210, 0), subject[9]);
 
-            subject.NextState(random);
+            subject.NextState(random, pallete);
 
             Assert.AreEqual(new Color(45, 0, 210), subject[0]);
             Assert.AreEqual(new Color(117, 0, 138), subject[1]);
@@ -109,15 +111,16 @@ namespace Lighting.Tests
                 LightCount = 10
             };
 
+            var pallete = new PaletteRandom();
             var random = new Random(0);
-            subject.Reset(info, random);
+            subject.Reset(info, random, pallete);
 
             for (int i = 0; i < 10; i++)
             {
                 Assert.AreEqual(new Color(45, 0, 210), subject[i]);
             }
 
-            subject.NextState(random);
+            subject.NextState(random, pallete);
 
             for (int i = 0; i < 10; i++)
             {

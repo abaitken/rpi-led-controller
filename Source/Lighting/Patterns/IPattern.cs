@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lighting.Palette;
+using System;
 
 namespace Lighting.Patterns
 {
@@ -12,12 +13,14 @@ namespace Lighting.Patterns
         /// </summary>
         /// <param name="information">Lighting information</param>
         /// <param name="random">Random</param>
-        void Reset(ILightingInformation information, Random random);
+        /// /// <param name="palette">Palette</param>
+        void Reset(ILightingInformation information, Random random, IPalette palette);
 
         /// <summary>
         /// Sets the pattern to the next state
         /// </summary>
         /// <param name="random">Random</param>
-        void NextState(Random random);
+        /// /// <param name="palette">Palette</param>
+        void NextState(Random random, IPalette palette);
     }
 }

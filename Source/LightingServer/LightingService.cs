@@ -1,6 +1,7 @@
 ﻿using Lighting;
 using Lighting.Animations;
 using Lighting.Demos;
+using Lighting.Palette;
 using Lighting.Patterns;
 using Lighting.Scenes;
 using Lighting.Timings;
@@ -54,7 +55,7 @@ namespace LightingServer
                 private IAnimation _animation;
                 private ITiming _timing;
 
-                public override void Begin(ILightingController controller, Random random)
+                public override void Begin(ILightingController controller, Random random, IPalette palette)
                 {
                     _currentStep = 0;
 
@@ -62,13 +63,13 @@ namespace LightingServer
                     {
                         Configured = new[] { Color.Green }
                     };
-                    _on.Reset(controller, random);
+                    _on.Reset(controller, random, palette);
 
                     _off = new PatternConfigured
                     {
                         Configured = new[] { Color.Red }
                     };
-                    _off.Reset(controller, random);
+                    _off.Reset(controller, random, palette);
 
                     _animation = new AnimationInstant();
                     var totalSteps = _animation.Begin(controller, _on, random);
@@ -79,14 +80,14 @@ namespace LightingServer
                     _timing.Reset(totalSteps);
                 }
 
-                public override SceneState Step(ILightingController controller, Random random)
+                public override SceneState Step(ILightingController controller, Random random, IPalette palette)
                 {
                     var pattern = _onOrOff ? _on : _off;
                     _onOrOff = !_onOrOff;
 
                     _animation.Step(controller, pattern, random);
                     _timing.Delay();
-                    pattern.NextState(random);
+                    pattern.NextState(random, palette);
 
                     _currentStep++;
 
@@ -106,7 +107,7 @@ namespace LightingServer
 
             while (!stoppingToken.IsCancellationRequested)
             {
-                var currentDemo = CurrentDemo;
+                //var currentDemo = CurrentDemo;
                 var demo = new ServiceReadyDemo();
                 demo.Begin(controller, random);
 

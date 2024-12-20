@@ -1,16 +1,17 @@
-﻿using System;
+﻿using Lighting.Palette;
+using System;
 
 namespace Lighting.Patterns
 {
     public class PatternRandomSolidColor : PatternSolidColor
     {
-        public override void NextState(Random random)
+        public override void NextState(Random random, IPalette palette)
         {
         }
 
-        public override void Reset(ILightingInformation information, Random random)
+        public override void Reset(ILightingInformation information, Random random, IPalette palette)
         {
-            Color = Color.Random(random);
+            Color = palette.Random(random);
         }
     }
 }
