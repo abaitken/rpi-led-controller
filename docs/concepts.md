@@ -2,7 +2,7 @@
 
 The objective is to offer composable objects which can be configured and combined to achieve a number of different effects.
 
-![Conceptual Diagram](docs/diagram.png)
+![Conceptual Diagram](diagram.png)
 
 ### Palette
 
